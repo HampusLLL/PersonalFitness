@@ -1,0 +1,44 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    display: grid;
+    grid-template:
+    "a"
+    "b"
+    "c" 1fr;
+    background-image: url(Background1.jpeg);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+header{
+    grid-area: a;
+    display: grid;
+    border: solid red;
+}
+
+main{
+    grid-area: b;
+    display: grid;
+    width: 80%;
+    background-color: #242838;
+    margin-left: auto;
+    margin-right: auto;
+    border: solid red;
+}
+
+footer{
+    grid-area: c;
+    display: grid;
+    border: solid red;
+}
+
+#made-by{
+    font-family: Arial, Helvetica, sans-serif;
+    color: rgba(184, 184, 184, 0.37);
+    font-size: 10px;
+    text-align: center;
+}
