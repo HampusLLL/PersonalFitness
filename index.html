@@ -1,21 +1,92 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <script src="main.js" defer> </script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="main.js" defer></script>
     <title>Document</title>
 </head>
+
 <body>
-    <header>
-    </header>
-    <main>
-        
-    </main>
-    <footer>
-        <p id="made-by">Made by Hampus Lindvall</p>
-    </footer>
+    <div id="app">
+        <header>
+            <img id="personalfitness" src="img/personalfitness.png">
+        </header>
+
+        <main id="main">
+            <div id="select-muscle">
+                <div id="select-muscle-group">
+                    <p id="select-text">Select Muscle Group</p>
+                    <select id="muscle-group" v-model="muscleGroup">
+                        <option value="Chest">Chest</option>
+                        <option value="Back">Back</option>
+                        <option value="Shoulder">Shoulder</option>
+                        <option value="Arms">Arms</option>
+                        <option value="Abs">Abs</option>
+                        <option value="Legs">Legs</option>
+                    </select>
+                </div>
+                <ul id="exercise-list">
+                    <li class="exercise" v-for="(exercise, index) in exerciseList()">
+                        <img class="icon" :src="exercise.iconUrl">
+                        <div id="exercise-texts">
+                            <p id="exercise-name" ref="name">{{ exercise.text }}</p>
+                            <p id="exercise-muscle">{{ exercise.muscle }}</p>
+                        </div>
+                        <div id="sets-reps-add">
+                            <p id="sets-text">Sets: </p>
+                            <select id="sets" v-model="sets">
+                                <option value="none" selected disabled hidden></option>
+                                <option value="4-6">4-6</option>
+                                <option value="3-5">3-5</option>
+                                <option value="2-4">2-4</option>
+                            </select>
+                            <p id="reps-text">Reps: </p>
+                            <select id="reps" v-model="reps">
+                                <option value="none" selected disabled hidden></option>
+                                <option value="12-20">12-20</option>
+                                <option value="6-12">6-12</option>
+                                <option value="2-5">2-5</option>
+                            </select>
+                            <button id="add-exercise" type="submit" @click.prevent="addExercise(exercise)">+</button>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div id="list">
+                <h2 id="my-workout-text">My Workout</h2>
+                <ul id="choosen-exercises">
+                    <li id="choosen-exercise" v-for="(exercise, index) in myWorkoutList()">
+                        <img class="icon" :src="exercise.exerciseIconUrl">
+                        <div id="choosen-exercise-texts">
+                            <p id="choosen-exercise-name">{{ exercise.exerciseText }}</p>
+                            <p id="choosen-exercise-muscle">{{ exercise.exerciseMuscle }}</p>
+                            <div id="choosen-sets-reps">
+                                <p id="choosen-exercise-sets">Sets: {{ exercise.exerciseSets }}</p>
+                                <p id="choosen-exercise-reps">Reps: {{ exercise.exerciseReps }}</p>
+                            </div>
+                        </div>
+                        <div id="exercise-tips">
+                            <h3>Tip:</h3>
+                            <p>{{ exercise.exerciseTips }}</p>
+                        </div>
+                        <button id="remove-exercise" type="submit">X</button>
+                    </li>
+                </ul>
+                <div id="reset-div">
+                    <button type="submit" id="reset">Reset</button>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>Made by Hampus Lindvall</p>
+        </footer>
+    </div>
 </body>
+
 </html>

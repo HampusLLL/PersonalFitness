@@ -1,44 +1,235 @@
 *{
-    margin: 0;
-    padding: 0;
-}
-
-body{
-    display: grid;
-    grid-template:
-    "a"
-    "b"
-    "c" 1fr;
-    background-image: url(Background1.jpeg);
-    background-size: cover;
-    background-repeat: no-repeat;
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
 }
 
 header{
-    grid-area: a;
     display: grid;
-    border: solid red;
+    background-color: #5986ba;
+    justify-content:space-around;
+}
+
+#personalfitness{
+    font-size: 20px;
+    font-family: sans-serif;
+    color: white;
 }
 
 main{
-    grid-area: b;
     display: grid;
-    width: 80%;
-    background-color: #242838;
+    grid-template:
+    "a b" 1fr;
+    font-family: sans-serif;
+    font-size: 20px;
+    justify-content:center;
+}
+
+.select-text{
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    width: 370px;
+}
+
+#select-muscle-group{
+    display: grid;
+    grid-area: a;
+    margin: 2rem;
+}
+
+#list{
+    grid-area: b;
+    width: 600px;
+}
+
+#select-muscle{
+    width: 600px;
+}
+
+#muscle-group{
+    width: 100%;
+    font-size: 15px;
+    padding: 8px;
     margin-left: auto;
     margin-right: auto;
-    border: solid red;
 }
 
 footer{
-    grid-area: c;
-    display: grid;
-    border: solid red;
+    opacity: 25%;
+    text-align: center;
+    font-size: 15px;
 }
 
-#made-by{
-    font-family: Arial, Helvetica, sans-serif;
-    color: rgba(184, 184, 184, 0.37);
+#exercise-list{
+    margin: 2rem;
+}
+
+.exercise{
+    display: grid;
+    grid-template:"a b c" 1fr;
+    box-shadow: 0 0 15px 4px rgba(0, 0, 0, 0.185);
+    padding: 1rem;
+}
+
+.icon{
+    grid-area: a;
+    width: 90px;
+}
+
+#exercise-name{
+    grid-area: b;
+    width: 194px;
+}
+
+#exercise-muscle{
     font-size: 10px;
+    background-color: rgb(83, 206, 83);
+    border-radius: 10px;
+    padding: 5px;
+    width:fit-content;
+}
+
+#sets-reps-add{
+    grid-area: c;
+    display: grid;
+    grid-template:
+    "a b c"
+    "d e c" ;
+    width: 220px;
+    align-content: center;
+}
+
+#sets-text{
+    grid-area: a;
+    font-size: 15px;
+    width: 40px;
+    text-align: end;
+    margin: 5px;
+}
+
+#reps-text{
+    grid-area: d;
+    font-size: 15px;
+    width: 40px;
+    text-align: end;
+    margin: 5px;
+}
+
+#sets{
+    grid-area: b;
+    width: 60px;
+    height: 20px;
+    margin: 5px;
+}
+
+#reps{
+    grid-area: e;
+    width: 60px;
+    height: 20px;
+    margin: 5px;
+}
+
+#add-exercise{
+    grid-area: c;
+    font-size: 20px;
+    width: 35px;
+    height: 35px;
+    margin: 5px;
+    padding: 3px;
+    appearance: none;
+    border: 1px solid green;
+    border-radius: 50%;
+    color: green;
+}
+#add-exercise:hover{
+    cursor: pointer;
+    color: rgb(0, 179, 0);
+    border-color: rgb(0, 179, 0);
+}
+
+#my-workout-text{
+    background-color: #5986ba;
+    color: white;
+    border-radius: 10px;
     text-align: center;
+    width: 536px;
+    height: 60px;
+    margin: 2rem;
+    padding: 1rem;
+}
+
+#choosen-exercises{
+    width: 536px;
+    margin-left: 2rem;
+    margin-right: 2rem;
+}
+
+#choosen-exercise{
+    display: grid;
+    grid-template:"a b c d" 1fr;
+    box-shadow: 0 0 15px 4px rgba(0, 0, 0, 0.185);
+    padding: 1rem;
+}
+
+#choosen-exercise-name{
+    grid-area: a;
+    width:185px;
+}
+
+#choosen-exercise-muscle{
+    grid-area: b;
+    font-size: 10px;
+    background-color: rgb(83, 206, 83);
+    border-radius: 10px;
+    padding: 5px;
+    width:fit-content;
+}
+
+#choosen-sets-reps{
+    padding: 5px;
+}
+
+#exercise-tips{
+    grid-area: c;
+    font-size: 10px;
+    padding: 1rem;
+}
+
+#remove-exercise{
+    grid-area: d;
+    width: 35px;
+    height: 35px;
+    padding: 3px;
+    appearance: none;
+    border: 1px solid rgb(146, 0, 0);
+    border-radius: 50%;
+    color: rgb(146, 0, 0);
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+#remove-exercise:hover{
+    cursor: pointer;
+    color: red;
+    border-color: red;
+}
+
+#choosen-exercise-sets{
+    font-size: 10px;
+}
+
+#choosen-exercise-reps{
+    font-size: 10px;
+}
+
+#reset-div{
+    text-align: end;
+}
+#reset{
+    border: none;
+    margin-right: 2rem;
+    padding: 5px;
+    opacity: 40%;
+    text-decoration: underline;
+    cursor: pointer;
 }
