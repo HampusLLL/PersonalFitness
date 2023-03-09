@@ -52,7 +52,7 @@
                                 <option value="6-12">6-12</option>
                                 <option value="2-5">2-5</option>
                             </select>
-                            <button id="add-exercise" type="submit" @click.prevent="addExercise(exercise)">+</button>
+                            <button id="add-exercise" @click.prevent="addExercise(exercise)">+</button>
                         </div>
                     </li>
                 </ul>
@@ -74,11 +74,11 @@
                             <h3>Tip:</h3>
                             <p>{{ exercise.exerciseTips }}</p>
                         </div>
-                        <button id="remove-exercise" type="submit">X</button>
+                        <button id="remove-exercise" @click.prevent="removeExercise(exercise)">X</button>
                     </li>
                 </ul>
                 <div id="reset-div">
-                    <button type="submit" id="reset">Reset</button>
+                    <button id="reset" @click.prevent="resetExercises()">Reset</button>
                 </div>
             </div>
         </main>

@@ -1,6 +1,7 @@
 Vue.createApp({
     methods: {
         addExercise(exercise) {
+            if(localStorage.length == 10){return}
             if (this.sets && this.reps != '') {
                 let exerciseObject = {
                     exerciseText: exercise.text,
@@ -10,66 +11,46 @@ Vue.createApp({
                     exerciseTips: exercise.tips,
                     exerciseSets: this.sets,
                     exerciseReps: this.reps,
+                    exerciseID: 'addedExercises_' + this.exerciseID
                 };
-                if(localStorage.getItem('addedExercises') == null){
-                    localStorage.setItem('addedExercises', '[]')
-                }
-
-                let localStorageContent = JSON.parse(localStorage.getItem('addedExercises'))
-                localStorageContent.push(exerciseObject)
-                localStorage.setItem('addedExercises', JSON.stringify(localStorageContent));
-
-                // this.myExercises.push(exerciseObject);
-                // let objectStringified = JSON.stringify(this.myExercises);
+                this.storageCounter()
+                localStorage.setItem('addedExercises_' + this.exerciseID, JSON.stringify(exerciseObject));
+                this.exerciseID++
+                
             }
             else {
                 return
             }
         },
+        removeExercise(exercise){
+            localStorage.removeItem(exercise.exerciseID)
+        },
+        resetExercises(){
+            localStorage.clear();
+        },
+        storageCounter(){
+            this.exerciseID = localStorage.length;
+        },
         exerciseList() {
-            return this.exercises.filter((exercise) => exercise.muscleType == this.muscleGroup)
+            return this.exercises.filter((exercise) => exercise.muscleType == this.muscleGroup);
         },
         myWorkoutList() {
-            // let localStorageContent = localStorage.getItem('addedExercise');
-
-            // let myExercises;
-            // if(localStorageContent === null){
-            //     myExercises = [];
-            // }
-            // else{
-
-            // }
-
-            // let exerciseObjects = JSON.parse(localStorage.getItem('addedExercise'));
-            // this.myWorkout.push(exerciseObjects);
-            // let objectStringified = JSON.stringify(this.myWorkout);
-            // localStorage.setItem('addedExercises', objectStringified);
-
-            let localStorageContent = JSON.parse(localStorage.getItem('addedExercises'));
-            return localStorageContent
-
-
-            // let localStorageObjects = JSON.parse(localStorage.getItem('addedExercises'));
-            // this.myWorkout.push(localStorageObjects);
-            // if(localStorageObjects){
-            // return this.myWorkout
-            //     this.myWorkout.push(localStorageObjects);
-            //     return this.myWorkout
-            // }
-            // else{
-            //     return this.myWorkout
-            // }
-            // this.myWorkout.push(exerciseObjects)
+            let exercises = [];
+            for (let i = 0; i < localStorage.length; i++) {
+              let key = localStorage.key(i);
+              let value = JSON.parse(localStorage.getItem(key));
+              exercises.push(value);
+            }
+            return exercises
         }
     },
     data() {
         return {
+            exerciseID: 1,
             sets: '',
             reps: '',
             muscleGroup: '',
             myWorkout: [
-            ],
-            myExercises: [
             ],
             exercises: [
                 {
