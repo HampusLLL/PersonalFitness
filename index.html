@@ -34,7 +34,7 @@
                     <li class="exercise" v-for="(exercise, index) in exerciseList()">
                         <img class="icon" :src="exercise.iconUrl">
                         <div id="exercise-texts">
-                            <p id="exercise-name" ref="name">{{ exercise.text }}</p>
+                            <p id="exercise-name">{{ exercise.text }}</p>
                             <p id="exercise-muscle">{{ exercise.muscle }}</p>
                         </div>
                         <div id="sets-reps-add">

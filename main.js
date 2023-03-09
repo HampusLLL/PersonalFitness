@@ -1,74 +1,75 @@
 Vue.createApp({
     methods: {
         addExercise(exercise) {
-            if(this.sets && this.reps != ''){
-                let addedExercise = exercise
+            if (this.sets && this.reps != '') {
                 let exerciseObject = {
-                    exerciseText: addedExercise.text,
-                    exerciseMuscleType: addedExercise.muscleType,
-                    exerciseMuscle: addedExercise.muscle,
-                    exerciseIconUrl: addedExercise.iconUrl,
-                    exerciseTips: addedExercise.tips,
+                    exerciseText: exercise.text,
+                    exerciseMuscleType: exercise.muscleType,
+                    exerciseMuscle: exercise.muscle,
+                    exerciseIconUrl: exercise.iconUrl,
+                    exerciseTips: exercise.tips,
                     exerciseSets: this.sets,
                     exerciseReps: this.reps,
                 };
-                // this.myWorkout.push(exerciseObject);
+                if(localStorage.getItem('addedExercises') == null){
+                    localStorage.setItem('addedExercises', '[]')
+                }
 
-                let exerciseObjectSerialized = JSON.stringify(exerciseObject);
-                localStorage.setItem('addedExercise', exerciseObjectSerialized);
-                let exerciseObjectDeserialized = JSON.parse(localStorage.getItem('addedExercise'));
-                this.myWorkout.push(exerciseObjectDeserialized);
+                let localStorageContent = JSON.parse(localStorage.getItem('addedExercises'))
+                localStorageContent.push(exerciseObject)
+                localStorage.setItem('addedExercises', JSON.stringify(localStorageContent));
+
+                // this.myExercises.push(exerciseObject);
+                // let objectStringified = JSON.stringify(this.myExercises);
             }
-            else{
+            else {
                 return
             }
         },
         exerciseList() {
-            if (this.muscleGroup == 'All') {
-                return this.exercises
-            }
-            else {
-                return this.exercises.filter((exercise) => exercise.muscleType == this.muscleGroup)
-            }
+            return this.exercises.filter((exercise) => exercise.muscleType == this.muscleGroup)
         },
         myWorkoutList() {
-            return this.myWorkout
+            // let localStorageContent = localStorage.getItem('addedExercise');
+
+            // let myExercises;
+            // if(localStorageContent === null){
+            //     myExercises = [];
+            // }
+            // else{
+
+            // }
+
+            // let exerciseObjects = JSON.parse(localStorage.getItem('addedExercise'));
+            // this.myWorkout.push(exerciseObjects);
+            // let objectStringified = JSON.stringify(this.myWorkout);
+            // localStorage.setItem('addedExercises', objectStringified);
+
+            let localStorageContent = JSON.parse(localStorage.getItem('addedExercises'));
+            return localStorageContent
+
+
+            // let localStorageObjects = JSON.parse(localStorage.getItem('addedExercises'));
+            // this.myWorkout.push(localStorageObjects);
+            // if(localStorageObjects){
+            // return this.myWorkout
+            //     this.myWorkout.push(localStorageObjects);
+            //     return this.myWorkout
+            // }
+            // else{
+            //     return this.myWorkout
+            // }
+            // this.myWorkout.push(exerciseObjects)
         }
     },
     data() {
         return {
-            exerciseTextsModel: '',
             sets: '',
             reps: '',
             muscleGroup: '',
             myWorkout: [
-                // {
-                //     exerciseText: 'Barbell Curl',
-                //     exerciseMuscleType: 'Arms',
-                //     exerciseMuscle: 'Bicep',
-                //     exerciseIconUrl: 'img/arms.png',
-                //     exerciseTips: 'If you have to swing at the hips to lift the weight, its too heavy.',
-                //     exerciseSets: '3-5',
-                //     exerciseReps: '6-8',
-                // },
-                // {
-                //     exerciseText: 'Behind-Back Barbell Wrist Curl',
-                //     exerciseMuscleType: 'Arms',
-                //     exerciseMuscle: 'Flexor',
-                //     exerciseIconUrl: 'img/arms.png',
-                //     exerciseTips: 'Slowly raise the barbell up as far as possible squeezing the forearm muscles at the top of the movement. Only your wrists should be moving.',
-                //     exerciseSets: '4-6',
-                //     exerciseReps: '12-15',
-                // },
-                // {
-                //     exerciseText: 'Cable Extension',
-                //     exerciseMuscleType: 'Arms',
-                //     exerciseMuscle: 'Triceps',
-                //     exerciseIconUrl: 'img/arms.png',
-                //     exerciseTips: 'Make sure to keep your upper arm stationary throughout the movement.',
-                //     exerciseSets: '4-6',
-                //     exerciseReps: '12-15',
-                // },
+            ],
+            myExercises: [
             ],
             exercises: [
                 {
