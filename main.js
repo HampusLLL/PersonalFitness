@@ -2,6 +2,7 @@ Vue.createApp({
     methods: {
         addExercise(exercise) {
             if(localStorage.length == 10){return}
+            this.storageCounterExercise();
             if (this.sets && this.reps != '') {
                 let exerciseObject = {
                     exerciseText: exercise.text,
@@ -11,42 +12,63 @@ Vue.createApp({
                     exerciseTips: exercise.tips,
                     exerciseSets: this.sets,
                     exerciseReps: this.reps,
-                    exerciseID: 'addedExercises_' + this.exerciseID
+                    exerciseID: this.exerciseIdCounter
                 };
-                this.storageCounter()
-                localStorage.setItem('addedExercises_' + this.exerciseID, JSON.stringify(exerciseObject));
-                this.exerciseID++
-                
+                localStorage.setItem('addedExercises_' + exerciseObject.exerciseID, JSON.stringify(exerciseObject));
+                this.updateList()
             }
             else {
                 return
             }
         },
         removeExercise(exercise){
-            localStorage.removeItem(exercise.exerciseID)
+            localStorage.removeItem('addedExercises_' + exercise.exerciseID)
+            this.updateList()
         },
         resetExercises(){
             localStorage.clear();
+            this.updateList()
         },
-        storageCounter(){
-            this.exerciseID = localStorage.length;
+        storageCounterExercise(){
+            if(localStorage.length == 0){return}
+            for (let i = 0; i < localStorage.length; i++) {
+                let key = localStorage.key(i);
+                let value = JSON.parse(localStorage.getItem(key));
+                if(value.exerciseID > this.exerciseIdCounter){
+                    this.exerciseIdCounter = value.exerciseID
+                }
+              }
+              this.exerciseIdCounter++
         },
         exerciseList() {
             return this.exercises.filter((exercise) => exercise.muscleType == this.muscleGroup);
         },
-        myWorkoutList() {
-            let exercises = [];
+        updateList(){
+            this.myWorkout = [];
             for (let i = 0; i < localStorage.length; i++) {
-              let key = localStorage.key(i);
-              let value = JSON.parse(localStorage.getItem(key));
-              exercises.push(value);
+                let key = localStorage.key(i);
+                let value = JSON.parse(localStorage.getItem(key));
+                this.myWorkout.push(value);
+              }
+        },
+        myWorkoutList() {
+            this.updateList()
+            return this.myWorkout
+        },
+        amountText(){
+            let count = localStorage.length;
+            if (count === 1) {
+                return count + ' exercise';
             }
-            return exercises
+            else {
+                return count + ' exercises';
+            }
         }
     },
     data() {
         return {
-            exerciseID: 1,
+            amount: 0,
+            exerciseIdCounter: 1,
             sets: '',
             reps: '',
             muscleGroup: '',

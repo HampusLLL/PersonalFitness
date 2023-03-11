@@ -76,10 +76,11 @@
                         </div>
                         <button id="remove-exercise" @click.prevent="removeExercise(exercise)">X</button>
                     </li>
+                    <div id="reset-div" v-if="myWorkout.length > 0">
+                        <p id="amountText">{{ amountText() }}</p>
+                        <button id="reset" @click.prevent="resetExercises()">Reset</button>
+                    </div>
                 </ul>
-                <div id="reset-div">
-                    <button id="reset" @click.prevent="resetExercises()">Reset</button>
-                </div>
             </div>
         </main>
 

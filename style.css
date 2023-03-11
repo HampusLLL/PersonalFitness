@@ -223,13 +223,22 @@ footer{
 }
 
 #reset-div{
-    text-align: end;
+    display: flex;
+    justify-content:space-between;
+    box-shadow: 0 0 15px 4px rgba(0, 0, 0, 0.185);
+    padding-top: 10px;
+    padding-bottom: 5px;
 }
 #reset{
     border: none;
-    margin-right: 2rem;
+    margin-right: 1rem;
     padding: 5px;
     opacity: 40%;
     text-decoration: underline;
     cursor: pointer;
+}
+#amountText{
+    margin-left: 1rem;
+    font-size: 15px;
+    opacity: 40%;
 }
