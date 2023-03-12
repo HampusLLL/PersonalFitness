@@ -39,14 +39,14 @@
                         </div>
                         <div id="sets-reps-add">
                             <p id="sets-text">Sets: </p>
-                            <select id="sets" v-model="sets">
+                            <select id="sets" ref="selectedSetsReps" @change="selectSets($event)">
                                 <option value="none" selected disabled hidden></option>
                                 <option value="4-6">4-6</option>
                                 <option value="3-5">3-5</option>
                                 <option value="2-4">2-4</option>
                             </select>
                             <p id="reps-text">Reps: </p>
-                            <select id="reps" v-model="reps">
+                            <select id="reps" ref="selectedSetsReps" @change="selectReps($event)">
                                 <option value="none" selected disabled hidden></option>
                                 <option value="12-20">12-20</option>
                                 <option value="6-12">6-12</option>
@@ -74,7 +74,7 @@
                             <h3>Tip:</h3>
                             <p>{{ exercise.exerciseTips }}</p>
                         </div>
-                        <button id="remove-exercise" @click.prevent="removeExercise(exercise)">X</button>
+                        <button id="remove-exercise" @click.prevent="removeExercise(exercise)"><img id="remove-image" :src="trashcanssrc" @mouseover="trashcanssrc = trashcanOpen" @mouseleave="trashcanssrc = trashcansClosed"></button>
                     </li>
                     <div id="reset-div" v-if="myWorkout.length > 0">
                         <p id="amountText">{{ amountText() }}</p>

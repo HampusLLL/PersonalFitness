@@ -15,10 +15,19 @@ Vue.createApp({
                     exerciseID: this.exerciseIdCounter
                 };
                 localStorage.setItem('addedExercises_' + exerciseObject.exerciseID, JSON.stringify(exerciseObject));
-                this.updateList()
+                this.updateList();
+                this.resetRepsSets();
             }
             else {
                 return
+            }
+        },
+        resetRepsSets(){
+            this.sets = ''
+            this.reps = ''
+            let selectedSetsReps = this.$refs.selectedSetsReps
+            for(i = 0; i < selectedSetsReps.length; i++){
+                selectedSetsReps[i].value = 'none'
             }
         },
         removeExercise(exercise){
@@ -63,12 +72,21 @@ Vue.createApp({
             else {
                 return count + ' exercises';
             }
+        },
+        selectSets(event){
+            this.sets = event.target.value
+        },
+        selectReps(event){
+            this.reps = event.target.value
         }
     },
     data() {
         return {
             amount: 0,
             exerciseIdCounter: 1,
+            trashcanssrc: 'img/trashcan-closed.png',
+            trashcanOpen: 'img/trashcan-open.png',
+            trashcansClosed: 'img/trashcan-closed.png',
             sets: '',
             reps: '',
             muscleGroup: '',

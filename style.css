@@ -195,23 +195,21 @@ footer{
     padding: 1rem;
 }
 
+#remove-image{
+    width: 18px;
+}
+
 #remove-exercise{
     grid-area: d;
+    border: none;
     width: 35px;
-    height: 35px;
     padding: 3px;
-    appearance: none;
-    border: 1px solid rgb(146, 0, 0);
-    border-radius: 50%;
-    color: rgb(146, 0, 0);
     margin-top: auto;
     margin-bottom: auto;
 }
 
 #remove-exercise:hover{
     cursor: pointer;
-    color: red;
-    border-color: red;
 }
 
 #choosen-exercise-sets{
@@ -241,4 +239,14 @@ footer{
     margin-left: 1rem;
     font-size: 15px;
     opacity: 40%;
+}
+footer{
+    margin: 1rem;
+}
+@media (max-width: 1200px){
+    main{
+        grid-template:
+        "a"
+        "b" 1fr;
+    }
 }
