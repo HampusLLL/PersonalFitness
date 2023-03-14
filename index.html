@@ -15,7 +15,6 @@
     <div id="app">
         <header>
             <img id="personal-fitness" src="img/personal_fitness.png" alt="logo">
-            
             <div id="header-div">
                 <a id="git-link" href="https://github.com/HampusLLL">
                     <img id="github-icon" src="img/github_icon.png" alt="git icon">
@@ -87,7 +86,7 @@
                         <p id="amountText">{{ amountText() }}</p>
                         <button id="reset" @click.prevent="resetExercises()">Reset</button>
                     </div>
-                    <div id="bar-chart" v-if="myWorkout.length > 0">
+                    <div id="bar-chart">
                         <svg id="chart" viewbox="0 0 500 110">
                             <g>
                                 <line x1="130" y1="9" x2="130" y2="110" stroke="black" />
@@ -101,7 +100,7 @@
                                 <text class="text-amount" x="120" y="47">6</text>
                                 <text class="text-amount" x="120" y="67">4</text>
                                 <text class="text-amount" x="120" y="85">2</text>
-                                <text class="text-bar" x="160" y="6">Amount of exercises per muscle group</text>
+                                <text class="text-bar" x="160" y="7">Amount of exercises per muscle group</text>
                             </g>
                             <g>
                                 <rect id="rect-chest" x="145" :y="getYValue('Chest')" width="30" :height="chestAmount"></rect>
