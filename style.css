@@ -5,15 +5,57 @@
 }
 
 header{
-    display: grid;
-    background-color: #5986ba;
-    justify-content:space-around;
-}
-
-#personalfitness{
-    font-size: 20px;
+    display: flex;
     font-family: sans-serif;
     color: white;
+    background-color: #272b35;
+    justify-content:space-between;
+}
+
+h1{
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    margin-left: 1rem;
+    width: 80%;
+}
+
+#personal-fitness{
+    margin: 5px;
+    width: 120px;
+    margin-left: 47%;
+    margin-right: 30%;
+}
+
+#header-div{
+    width: 20%;
+    display: grid;
+    grid-template:
+    "a"
+    "b" 1fr;
+}
+
+#made-by{
+    font-size: 10px;
+    opacity: 30%;
+    text-align: end;
+    grid-area: a;
+}
+
+#github-icon{
+    margin: 5px;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    grid-area: b;
+}
+
+#git-link{
+    margin-left: auto;
+    margin-top: auto;
+}
+
+body{
+    background-color: #1a1e27;
 }
 
 main{
@@ -23,18 +65,17 @@ main{
     font-family: sans-serif;
     font-size: 20px;
     justify-content:center;
-}
-
-.select-text{
-    margin-top: 2rem;
-    margin-bottom: 1rem;
-    width: 370px;
+    color: white;
 }
 
 #select-muscle-group{
     display: grid;
     grid-area: a;
     margin: 2rem;
+    background-color: #272b35;
+    border-radius: 10px;
+    height: 60px;
+    width: 536px;
 }
 
 #list{
@@ -48,10 +89,15 @@ main{
 
 #muscle-group{
     width: 100%;
-    font-size: 15px;
+    font-size: 18px;
     padding: 8px;
     margin-left: auto;
     margin-right: auto;
+    outline: none;
+    background-color: #272b35;
+    color: white;
+    border: none;
+    border-radius: 10px;
 }
 
 footer{
@@ -62,6 +108,10 @@ footer{
 
 #exercise-list{
     margin: 2rem;
+    width: 536px;
+    border-radius: 10px;
+    background-color: #272b35;
+    border-radius: 10px;
 }
 
 .exercise{
@@ -120,6 +170,10 @@ footer{
     width: 60px;
     height: 20px;
     margin: 5px;
+    outline: none;
+    border: none;
+    background-color: #272822;
+    color: white;
 }
 
 #reps{
@@ -127,19 +181,24 @@ footer{
     width: 60px;
     height: 20px;
     margin: 5px;
+    outline: none;
+    border: none;
+    background-color: #272822;
+    color: white;
 }
 
 #add-exercise{
     grid-area: c;
-    font-size: 20px;
+    font-size: 10px;
     width: 35px;
-    height: 35px;
+    height: 20px;
     margin: 5px;
     padding: 3px;
-    appearance: none;
-    border: 1px solid green;
-    border-radius: 50%;
-    color: green;
+    margin-top: auto;
+    margin-bottom: auto;
+    background-color: #272822;
+    color: white;
+    border-color: #2b2b2a;
 }
 #add-exercise:hover{
     cursor: pointer;
@@ -148,7 +207,7 @@ footer{
 }
 
 #my-workout-text{
-    background-color: #5986ba;
+    background-color: #272b35;
     color: white;
     border-radius: 10px;
     text-align: center;
@@ -162,6 +221,8 @@ footer{
     width: 536px;
     margin-left: 2rem;
     margin-right: 2rem;
+    background-color: #272b35;
+    border-radius: 10px;
 }
 
 #choosen-exercise{
@@ -195,20 +256,19 @@ footer{
     padding: 1rem;
 }
 
-#remove-image{
-    width: 18px;
-}
-
 #remove-exercise{
     grid-area: d;
     border: none;
-    width: 35px;
+    width: 22px;
+    height: 27px;
     padding: 3px;
     margin-top: auto;
-    margin-bottom: auto;
+    background: url("img/trashcan-closed.png") no-repeat;
+    
 }
 
 #remove-exercise:hover{
+    background: url("img/trashcan-open.png") no-repeat;
     cursor: pointer;
 }
 
@@ -227,26 +287,101 @@ footer{
     padding-top: 10px;
     padding-bottom: 5px;
 }
+
 #reset{
     border: none;
     margin-right: 1rem;
     padding: 5px;
-    opacity: 40%;
     text-decoration: underline;
-    cursor: pointer;
+    background-color: #272b35;
+    color: white;
+    opacity: 40%;
 }
+#reset:hover{
+    cursor: pointer;
+    color: red;
+}
+
 #amountText{
     margin-left: 1rem;
     font-size: 15px;
     opacity: 40%;
 }
-footer{
-    margin: 1rem;
+
+#bar-chart{
+    background-color: #272b35;
+    border-radius: 10px;
 }
+#rect-chest{
+    fill: #558ab6;
+}
+
+#rect-back{
+    fill: #b56fab;
+}
+
+#rect-shoulder{
+    fill: #c74243;
+}
+
+#rect-arms{
+    fill: orange;
+}
+
+#rect-abs{
+    fill: #ffde17;
+}
+
+#rect-legs{
+    fill: purple;
+}
+
+.text-bar{
+    font-size: 8px;
+    fill: white;
+}
+
+.text-amount{
+    font-size: 7px;
+    fill: white;
+}
+
 @media (max-width: 1200px){
     main{
         grid-template:
         "a"
         "b" 1fr;
+    }
+}
+
+@media (max-width: 600px){
+    header, h1{
+        font-size: 25px;
+        background-color: #1a1e27;
+    }
+    body{
+        background-color: #272b35;
+    }
+    main{
+        display: block;
+        border-radius: 10px;
+    }
+    #select-muscle{
+        width: 100%;
+    }
+    #list{
+        width: 100%;
+    }
+    #exercise-list{
+        margin: 0;
+    }
+    #select-muscle-group{
+        margin: 0;
+    }
+    #my-workout-text{
+        margin: 0;
+    }
+    #choosen-exercises{
+        margin: 0;
     }
 }
