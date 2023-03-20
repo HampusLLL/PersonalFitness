@@ -70,12 +70,7 @@ Vue.createApp({
         },
         amountText(){
             let count = localStorage.length;
-            if (count === 1) {
-                return count + ' exercise';
-            }
-            else {
-                return count + ' exercises';
-            }
+            return count + ' of 10 exercises';
         },
         selectSets(event){
             this.sets = event.target.value
