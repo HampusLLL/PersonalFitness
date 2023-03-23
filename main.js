@@ -2,7 +2,7 @@ import jsonExercises from './exercises.json' assert { type: "json" };
 Vue.createApp({
     methods: {
         addExercise(exercise) {
-            if(localStorage.length == 10){return}
+            if (localStorage.length == 10) { return }
             this.storageCounterExercise();
             if (this.sets && this.reps != '') {
                 let exerciseObject = {
@@ -23,70 +23,82 @@ Vue.createApp({
                 return
             }
         },
-        resetRepsSets(){
+        resetRepsSets() {
             this.sets = ''
             this.reps = ''
             let selectedSetsReps = this.$refs.selectedSetsReps
-            for(let i = 0; i < selectedSetsReps.length; i++){
+            for (let i = 0; i < selectedSetsReps.length; i++) {
                 selectedSetsReps[i].value = 'none'
             }
         },
-        removeExercise(exercise){
+        removeExercise(exercise) {
             localStorage.removeItem('addedExercises_' + exercise.exerciseID)
             this.updateList()
+            if(localStorage.length == 0){
+                this.showChartBool =false
+            }
         },
-        resetExercises(){
+        resetExercises() {
             localStorage.clear();
             this.updateList();
             this.exerciseIdCounter = 0;
+            this.showChartBool = false;
         },
-        storageCounterExercise(){
-            if(localStorage.length == 0){return}
+        showChart(){
+            if(this.showChartBool == false){
+                this.showChartBool = true
+            }
+            else{
+                this.showChartBool = false
+            }
+        },
+        storageCounterExercise() {
+            if (localStorage.length == 0) { return }
             for (let i = 0; i < localStorage.length; i++) {
                 let key = localStorage.key(i);
                 let value = JSON.parse(localStorage.getItem(key));
-                if(value.exerciseID > this.exerciseIdCounter){
+                if (value.exerciseID > this.exerciseIdCounter) {
                     this.exerciseIdCounter = value.exerciseID
                 }
-              }
-              this.exerciseIdCounter++
+            }
+            this.exerciseIdCounter++
         },
         exerciseList() {
             return this.exercises.filter((exercise) => exercise.muscleType == this.muscleGroup);
         },
-        updateList(){
+        updateList() {
             this.myWorkout = [],
-            this.resetSelectedMuscleCount()
+                this.resetSelectedMuscleCount()
             for (let i = 0; i < localStorage.length; i++) {
                 let key = localStorage.key(i);
                 let value = JSON.parse(localStorage.getItem(key));
                 this.myWorkout.push(value);
                 this.countSelectedMuscle(value)
-              }
+            }
         },
         myWorkoutList() {
             this.updateList()
             return this.myWorkout
         },
-        amountText(){
+        amountText() {
             let count = localStorage.length;
             return count + ' of 10 exercises';
         },
-        selectSets(event){
+        selectSets(event) {
             this.sets = event.target.value
         },
-        selectReps(event){
+        selectReps(event) {
             this.reps = event.target.value
         },
-        countSelectedMuscle(exercise){
-            if(exercise.exerciseMuscleType == 'Chest'){this.chestAmount += 10};
-            if(exercise.exerciseMuscleType == 'Back'){this.backAmount += 10};
-            if(exercise.exerciseMuscleType == 'Shoulder'){this.shoulderAmount += 10};
-            if(exercise.exerciseMuscleType == 'Arms'){this.armsAmount += 10};
-            if(exercise.exerciseMuscleType == 'Abs'){this.absAmount += 10};
-            if(exercise.exerciseMuscleType == 'Legs'){this.legsAmount += 10};
+        countSelectedMuscle(exercise) {
+            if (exercise.exerciseMuscleType == 'Chest') { this.chestAmount += 10 };
+            if (exercise.exerciseMuscleType == 'Back') { this.backAmount += 10 };
+            if (exercise.exerciseMuscleType == 'Shoulder') { this.shoulderAmount += 10 };
+            if (exercise.exerciseMuscleType == 'Arms') { this.armsAmount += 10 };
+            if (exercise.exerciseMuscleType == 'Abs') { this.absAmount += 10 };
+            if (exercise.exerciseMuscleType == 'Legs') { this.legsAmount += 10 };
         },
-        resetSelectedMuscleCount(){
+        resetSelectedMuscleCount() {
             this.chestAmount = 2
             this.backAmount = 2
             this.shoulderAmount = 2
@@ -94,17 +106,18 @@ Vue.createApp({
             this.absAmount = 2
             this.legsAmount = 2
         },
-        getYValue(muscle){
-            if(muscle == 'Chest'){return 111 - this.chestAmount}
-            if(muscle == 'Back'){return 111 - this.backAmount}
-            if(muscle == 'Shoulder'){return 111 - this.shoulderAmount}
-            if(muscle == 'Arms'){return 111 - this.armsAmount}
-            if(muscle == 'Abs'){return 111 - this.absAmount}
-            if(muscle == 'Legs'){return 111 - this.legsAmount}
+        getYValue(muscle) {
+            if (muscle == 'Chest') { return 111 - this.chestAmount }
+            if (muscle == 'Back') { return 111 - this.backAmount }
+            if (muscle == 'Shoulder') { return 111 - this.shoulderAmount }
+            if (muscle == 'Arms') { return 111 - this.armsAmount }
+            if (muscle == 'Abs') { return 111 - this.absAmount }
+            if (muscle == 'Legs') { return 111 - this.legsAmount }
         }
     },
     data() {
         return {
+            showChartBool: false,
             amount: 0,
             exerciseIdCounter: 0,
             chestAmount: 2,

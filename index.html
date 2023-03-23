@@ -8,13 +8,14 @@
     <link rel="stylesheet" href="style.css">
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <script type="module" src="main.js" defer></script>
-    <title>Document</title>
+    <title>Personal Fitness</title>
 </head>
 
 <body>
     <div id="app">
         <header>
             <img id="personal-fitness" src="img/personal_fitness.png" alt="logo">
+
             <div id="header-div">
                 <a id="git-link" href="https://github.com/HampusLLL">
                     <img id="github-icon" src="img/github_icon.png" alt="git icon">
@@ -24,7 +25,9 @@
         </header>
 
         <main id="main">
+
             <div id="select-muscle">
+
                 <div id="select-muscle-group">
                     <select id="muscle-group" v-model="muscleGroup">
                         <option value="" hidden>Select Muscle Group</option>
@@ -36,21 +39,26 @@
                         <option value="Legs">Legs</option>
                     </select>
                 </div>
+
                 <ul id="exercise-list">
                     <li class="exercise" v-for="(exercise, index) in exerciseList()">
                         <img class="icon" :src="exercise.iconUrl">
+
                         <div id="exercise-texts">
                             <p id="exercise-name">{{ exercise.text }}</p>
                             <p id="exercise-muscle">{{ exercise.muscle }}</p>
                         </div>
+
                         <div id="sets-reps-add">
                             <p id="sets-text">Sets: </p>
+
                             <select id="sets" ref="selectedSetsReps" @change="selectSets($event)">
                                 <option value="none" selected disabled hidden></option>
                                 <option value="4-6">4-6</option>
                                 <option value="3-5">3-5</option>
                                 <option value="2-4">2-4</option>
                             </select>
+
                             <p id="reps-text">Reps: </p>
                             <select id="reps" ref="selectedSetsReps" @change="selectReps($event)">
                                 <option value="none" selected disabled hidden></option>
@@ -58,35 +66,47 @@
                                 <option value="6-12">6-12</option>
                                 <option value="2-5">2-5</option>
                             </select>
+
                             <button id="add-exercise" @click.prevent="addExercise(exercise)">Add</button>
                         </div>
                     </li>
                 </ul>
+
             </div>
+
             <div id="list">
                 <h2 id="my-workout-text">My Workout</h2>
+
                 <ul id="choosen-exercises">
                     <li id="choosen-exercise" v-for="(exercise, index) in myWorkoutList()">
                         <img class="icon" :src="exercise.exerciseIconUrl">
+
                         <div id="choosen-exercise-texts">
                             <p id="choosen-exercise-name">{{ exercise.exerciseText }}</p>
                             <p id="choosen-exercise-muscle">{{ exercise.exerciseMuscle }}</p>
+                            
                             <div id="choosen-sets-reps">
-                                <p id="choosen-exercise-sets">Sets: {{ exercise.exerciseSets }}</p>
-                                <p id="choosen-exercise-reps">Reps: {{ exercise.exerciseReps }}</p>
+                                <p class="choosen-exercise-sets-reps">Sets: {{ exercise.exerciseSets }}</p>
+                                <p class="choosen-exercise-sets-reps">Reps: {{ exercise.exerciseReps }}</p>
                             </div>
+
                         </div>
+
                         <div id="exercise-tips">
                             <h3>Tip:</h3>
                             <p>{{ exercise.exerciseTips }}</p>
                         </div>
+
                         <button id="remove-exercise" @click.prevent="removeExercise(exercise)"></button>
                     </li>
-                    <div id="reset-div" v-if="myWorkout.length > 0">
+
+                    <div id="choosen-exercises-footer" v-if="myWorkout.length > 0">
                         <p id="amountText">{{ amountText() }}</p>
+                        <button id="show-chart"@click.prevent="showChart()">Show chart</button>
                         <button id="reset" @click.prevent="resetExercises()">Reset</button>
                     </div>
-                    <div id="bar-chart">
+
+                    <div id="bar-chart" v-if="showChartBool == true">
                         <svg id="chart" viewbox="0 0 500 110">
                             <g>
                                 <line x1="130" y1="9" x2="130" y2="110" stroke="black" />
@@ -99,26 +119,30 @@
                                 <text class="text-amount" x="120" y="27">8</text>
                                 <text class="text-amount" x="120" y="47">6</text>
                                 <text class="text-amount" x="120" y="67">4</text>
-                                <text class="text-amount" x="120" y="85">2</text>
+                                <text class="text-amount" x="120" y="87">2</text>
                                 <text class="text-bar" x="160" y="7">Amount of exercises per muscle group</text>
                             </g>
                             <g>
-                                <rect id="rect-chest" x="145" :y="getYValue('Chest')" width="30" :height="chestAmount"></rect>
+                                <rect id="rect-chest" x="145" :y="getYValue('Chest')" width="30" :height="chestAmount">
+                                </rect>
                                 <text class="text-bar" x="20" y="20">Chest</text>
                                 <rect id="rect-chest" x="10" y="15" width="5" height="5"></rect>
                             </g>
                             <g>
-                                <rect id="rect-back" x="180" :y="getYValue('Back')" width="30" :height="backAmount"></rect>
+                                <rect id="rect-back" x="180" :y="getYValue('Back')" width="30" :height="backAmount">
+                                </rect>
                                 <text class="text-bar" x="20" y="30">Back</text>
                                 <rect id="rect-back" x="10" y="25" width="5" height="5"></rect>
                             </g>
                             <g>
-                                <rect id="rect-shoulder" x="215" :y="getYValue('Shoulder')" width="30" :height="shoulderAmount"></rect>
+                                <rect id="rect-shoulder" x="215" :y="getYValue('Shoulder')" width="30"
+                                    :height="shoulderAmount"></rect>
                                 <text class="text-bar" x="20" y="40">Shoulder</text>
                                 <rect id="rect-shoulder" x="10" y="35" width="5" height="5"></rect>
                             </g>
                             <g>
-                                <rect id="rect-arms" x="250" :y="getYValue('Arms')" width="30" :height="armsAmount"></rect>
+                                <rect id="rect-arms" x="250" :y="getYValue('Arms')" width="30" :height="armsAmount">
+                                </rect>
                                 <text class="text-bar" x="20" y="50">Arms</text>
                                 <rect id="rect-arms" x="10" y="45" width="5" height="5"></rect>
                             </g>
@@ -128,12 +152,13 @@
                                 <rect id="rect-abs" x="10" y="55" width="5" height="5"></rect>
                             </g>
                             <g>
-                                <rect id="rect-legs" x="320" :y="getYValue('Legs')" width="30" :height="legsAmount"></rect>
+                                <rect id="rect-legs" x="320" :y="getYValue('Legs')" width="30" :height="legsAmount">
+                                </rect>
                                 <text class="text-bar" x="20" y="70">Legs</text>
                                 <rect id="rect-legs" x="10" y="65" width="5" height="5"></rect>
                             </g>
                         </svg>
-                </div>
+                    </div>
                 </ul>
             </div>
         </main>

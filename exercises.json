@@ -112,11 +112,25 @@
         "tips": "If you have heavy dumbbells, raise your thighs one at a time to help lift the dumbbells."
     },
     {
+        "text": "Plank Dumbbell Shoulder Raise",
+        "muscleType": "Shoulder",
+        "muscle": "Rear Deltoid",
+        "iconUrl": "img/shoulders.png",
+        "tips": "Bring the feet in as close to each other as you can while maintaining a good flat back position and not shifting your hips."
+    },
+    {
         "text": "Dumbbell Front Raise",
         "muscleType": "Shoulder",
         "muscle": "Anterior Deltoid",
         "iconUrl": "img/shoulders.png",
         "tips": "Lower the dumbbells to the starting position (at the thighs) with a slow and controlled motion while exhaling."
+    },
+    {
+        "text": "Overhead Press",
+        "muscleType": "Shoulder",
+        "muscle": "Anterior Deltoid",
+        "iconUrl": "img/shoulders.png",
+        "tips": "As you press the weight up, let your head move forward slightly. Some people resist this natural motion, and that's a mistake."
     },
     {
         "text": "Lat Pulldown",
