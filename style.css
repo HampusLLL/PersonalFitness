@@ -139,7 +139,8 @@ footer {
     display: grid;
     grid-template:
         "a b c"
-        "d e c";
+        "d e c"
+        "f g c";
     width: 220px;
     align-content: center;
 }
@@ -158,6 +159,25 @@ footer {
     width: 40px;
     text-align: end;
     margin: 5px;
+}
+
+#rest-text {
+    grid-area: f;
+    font-size: 15px;
+    width: 40px;
+    text-align: end;
+    margin: 5px;
+}
+
+#rest {
+    grid-area: g;
+    width: 60px;
+    height: 20px;
+    margin: 5px;
+    outline: none;
+    border: none;
+    background-color: #272822;
+    color: white;
 }
 
 #sets {
@@ -269,14 +289,6 @@ footer {
 
 .choosen-exercise-sets-reps {
     font-size: 10px;
-}
-
-#tutorial-link {
-    font-size: 10px;
-    margin-top: 3px;
-    opacity: 60%;
-    cursor: pointer;
-    width: 35px;
 }
 
 #choosen-exercises-footer {

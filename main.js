@@ -13,6 +13,7 @@ Vue.createApp({
                     exerciseTips: exercise.tips,
                     exerciseSets: this.sets,
                     exerciseReps: this.reps,
+                    exerciseRest: this.rest,
                     exerciseID: this.exerciseIdCounter
                 };
                 localStorage.setItem('addedExercises_' + exerciseObject.exerciseID, JSON.stringify(exerciseObject));
@@ -90,6 +91,9 @@ Vue.createApp({
         selectReps(event) {
             this.reps = event.target.value
         },
+        selectRest(event){
+            this.rest = event.target.value
+        },
         countSelectedMuscle(exercise) {
             if (exercise.exerciseMuscleType == 'Chest') { this.chestAmount += 10 };
             if (exercise.exerciseMuscleType == 'Back') { this.backAmount += 10 };
@@ -128,6 +132,7 @@ Vue.createApp({
             legsAmount: 2,
             sets: '',
             reps: '',
+            rest: '',
             muscleGroup: '',
             myWorkout: [],
             exercises: jsonExercises
